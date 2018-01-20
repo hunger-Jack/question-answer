@@ -5,7 +5,7 @@ import { dirname } from 'path';
 Vue.use(Router)
 
 export default new Router({
-  mode: 'history',
+  mode: 'hash',
   base: __dirname,
   routes: [
     {
