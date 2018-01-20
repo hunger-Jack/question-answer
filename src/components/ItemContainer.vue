@@ -26,35 +26,15 @@
   import store from '../store/index'
   import touch from '../assets/touch'
   import {
-    mapState
+    mapState,mapMutations
   } from 'vuex'
   export default {
     name: 'ItemContainer',
     computed: {
-      ...mapState(['isBegin', 'test', 'currentId', 'selectAnswerArr'])
+      ...mapState(['isBegin', 'test', 'currentId']),
     },
     methods: {
-      toItem() {
-        router.push('/item')
-        this.$store.commit('change')
-      },
-      nextTest() {
-        console.log(this.selectAnswerArr)
-         touch(true)
-        if (this.selectAnswerArr[this.currentId] === undefined) {
-          alert('必须选择一项答案哦~')
-          return
-        }
-        if (this.test[this.currentId + 1] === undefined) { //如果test下一项没有数据，就直接跳转路由到score页面
-          router.push('/score')
-          return
-        }
-        this.$store.commit('nextTest')
-
-      },
-      recordAnswer(index) {
-        this.selectAnswerArr[this.currentId] = index
-      }
+      ...mapMutations(['toItem','nextTest','recordAnswer'])
     },
     mounted() {
       touch(false)
